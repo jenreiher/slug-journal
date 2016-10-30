@@ -101,20 +101,16 @@ function addTodo(contents, date) {
   let timestamp = date
   if (!timestamp) timestamp = moment(new Date()).format();
 
-  newTodo(todoContents, timestamp);
-}
-
-function newTodo(contents, timestamp) {
   let id = data.length;
 
   let newTodo = {
     id: id,
     timestamp: timestamp,
     status: 0,
-    contents: contents
+    contents: todoContents
   }
 
-  data.push(newTodo); 
+  return newTodo; 
 }
 
-export {data, addTodo, newTodo};
+export {data, addTodo};

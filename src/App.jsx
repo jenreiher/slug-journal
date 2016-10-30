@@ -7,31 +7,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.rerender = this.rerender.bind(this);
+    this.state = {
+      data: []
+    }
+
+    this.newTodo = this.newTodo.bind(this);
   }
 
-  componentWillUpdate(nextprops) {
-    // instead of forcing rerender, could something happen here instead to trigger the udpate?
-
+  componentWillMount() {
+    this.setState({data: data});
   }
 
-  newTodo() {
-    addTodo();
-    this.rerender();
-  }
+  newTodo(contents, date) {
+    let newTodo = addTodo(contents, date);
 
-  rerender() {
-    // temporarily forcing update until data is actually flowing properly
-    // should data maybe move to state here to fix this?? 
-    // yes good idea, self!
-    this.forceUpdate();
+    this.state.data.push(newTodo);
+    this.setState(this.state);
   }
 
   renderTodos() {
     return(
       <div>
-        {data.map((todo)=> (
-          <Todo data={todo} key={todo.id} rerender={this.rerender}/>
+        {this.state.data.map((todo)=> (
+          <Todo data={todo} key={todo.id} newTodo={this.newTodo} />
         ))}
       </div>
     );
