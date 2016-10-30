@@ -13,14 +13,12 @@ class Todo extends React.Component {
     this.setStatus = this.setStatus.bind(this);
   }
 
-  componentDidUpdate() {
-    if (this.state.status === 2) {
-      console.log("status is forwarded")
-    } 
-  }
-
   setStatus(val) {
-    return this.setState({status: val});
+    if (val === 2) {
+      addTodo(this.props.data.contents);
+      this.props.rerender();
+    } 
+    this.setState({status: val});
   }
 
   render() {
@@ -36,7 +34,8 @@ class Todo extends React.Component {
 }
 
 Todo.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: React.PropTypes.object.isRequired,
+  rerender: React.PropTypes.func.isRequired
 }
 
 export default Todo;

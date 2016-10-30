@@ -6,10 +6,16 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.rerender = this.rerender.bind(this);
   }
 
   newTodo() {
     addTodo();
+    this.rerender();
+  }
+
+  rerender() {
     // temporarily forcing update until data is actually flowing properly
     this.forceUpdate();
   }
@@ -18,7 +24,7 @@ class App extends React.Component {
     return(
       <div>
         {data.map((todo)=> (
-          <Todo data={todo} key={todo.id} />
+          <Todo data={todo} key={todo.id} rerender={this.rerender}/>
         ))}
       </div>
     );
