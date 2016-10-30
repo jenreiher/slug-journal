@@ -19,20 +19,20 @@ class App extends React.Component {
       {
         id: 2,
         timestamp: '1477789224',
-        status: 0,
+        status: 1,
         contents: 'Toggle status'
       },
       {
         id: 3,
-        timestamp: '1477789272',
-        status: 0,
-        contents: 'If status changes to 1 copy to next days date'
-      },
-      {
-        id: 4,
         timestamp: '1477789512',
         status: 0,
         contents: 'Group todos by date'
+      },
+      {
+        id: 4,
+        timestamp: '1477789272',
+        status: 0,
+        contents: 'If status changes to 1 copy to next days date'
       }
     ];
 
