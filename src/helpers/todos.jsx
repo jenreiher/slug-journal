@@ -41,9 +41,57 @@ var data = [
     {
       id: 6,
       timestamp: '2016-10-31',
+      status: 1,
+      contents: 'If status changes to 2 copy to next days date'
+    },
+    {
+      id: 7,
+      timestamp: '2016-10-31',
       status: 0,
-      contents: 'If status changes to 1 copy to next days date'
-    } 
+      contents: "Explore data flow with data mapped to state in app"
+    },
+    {
+      id: 8,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Set up database"
+    },
+    {
+      id: 9,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Seed database with this example data"
+    },
+    {
+      id: 10,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Connect fetch data from database"
+    },
+    {
+      id: 11,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Post data to database"
+    },
+    {
+      id: 12,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Configure react-router for moving between dates"
+    },
+    {
+      id: 13,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: "Configure index page to only show 'today'"
+    },
+    {
+      id: 14,
+      timestamp: '2016-10-31',
+      status: 0,
+      contents: ""
+    }
   ];
 
 function addTodo(contents, date) {
@@ -52,22 +100,17 @@ function addTodo(contents, date) {
 
   let timestamp = date
   if (!timestamp) timestamp = moment(new Date()).format();
-  console.log(timestamp)
 
-  newTodo(todoContents, timestamp);
-}
-
-function newTodo(contents, timestamp) {
   let id = data.length;
 
   let newTodo = {
     id: id,
     timestamp: timestamp,
     status: 0,
-    contents: contents
+    contents: todoContents
   }
 
-  data.push(newTodo); 
+  return newTodo; 
 }
 
-export {data, addTodo, newTodo};
+export {data, addTodo};

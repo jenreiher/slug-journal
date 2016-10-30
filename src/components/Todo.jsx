@@ -16,8 +16,8 @@ class Todo extends React.Component {
   setStatus(val) {
     if (val === 2) {
       let newDate = moment(this.props.data.timestamp).add(1, "days").format();
-      addTodo(this.props.data.contents, newDate);
-      this.props.rerender();
+      let contents = this.props.data.contents
+      this.props.newTodo(contents, newDate);
     } 
     this.setState({status: val});
   }
@@ -36,7 +36,7 @@ class Todo extends React.Component {
 
 Todo.propTypes = {
   data: React.PropTypes.object.isRequired,
-  rerender: React.PropTypes.func.isRequired
+  newTodo: React.PropTypes.func.isRequired
 }
 
 export default Todo;
