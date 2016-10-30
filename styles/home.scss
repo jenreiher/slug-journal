@@ -1,3 +1,25 @@
 h1 {
   color: tomato;
 }
+
+.hidden {
+  display: none;
+}
+
+.statuses {
+  border: 1px solid black;
+  border-radius: 3px;
+  background: white;
+  width: 100px;
+  height: auto;
+  text-align: center;
+  position: relative; 
+  top: -20px;
+  z-index: 100;
+}
+
+.status {
+  display: inline-block;
+  padding: 7px;
+  text-align: center;
+}

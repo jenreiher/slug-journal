@@ -3,8 +3,8 @@ import Todo from './components/Todo.jsx'
 import moment from 'moment';
 
 class App extends React.Component {
-  renderTodos() {
-    let data =
+  data() {
+    return(
       [ 
         { 
           '2016-10-30': [
@@ -25,32 +25,47 @@ class App extends React.Component {
               timestamp: '2016-10-30',
               status: 1,
               contents: 'Toggle status'
+            },
+            {
+              id: 3,
+              timestamp: '2016-10-31',
+              status: 1,
+              contents: 'Group todos by date'
+            },
+            {
+              id: 4,
+              timestamp: '2016-10-31',
+              status: 1,
+              contents: 'Make todo status change a pop up'
+            },
+            {
+              id: 5,
+              timestamp: '2016-10-31',
+              status: 0,
+              contents: 'If status changes to 1 copy to next days date'
             }
           ]
         },
         {
           '2016-10-31': [
             {
-              id: 3,
+              id: 6,
               timestamp: '2016-10-31',
               status: 0,
-              contents: 'Group todos by date'
-            },
-            {
-              id: 4,
-              timestamp: '2016-10-31',
-              status: 0,
-              contents: 'If status changes to 1 copy to next days date'
+              contents: 'Add new todo'
             } 
           ]
         }
-    ];
+      ]
+    );
+  }
 
+  renderTodos() {
     return(
       <div>
-        {data.map((date, index)=> (
-          <div>
-            <h2 key={index}>{moment(Object.keys(date)[0]).format('MMMM Do[,] YYYY')}</h2>
+        {this.data().map((date, index)=> (
+          <div key={index}>
+            <h2>{moment(Object.keys(date)[0]).format('MMMM Do[,] YYYY')}</h2>
             <div>
               {date[Object.keys(date)].map(todo=> (
                 <Todo data={todo} key={todo.id} />
@@ -65,7 +80,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello React :)</h1>
+        <h1>Bullet Journal</h1>
         {this.renderTodos()}
       </div>
     );
