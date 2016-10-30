@@ -36,7 +36,7 @@ var data = [
     {
       id: 5,
       timestamp: '2016-10-31',
-      status: 0,
+      status: 1,
       contents: 'Add new todo'
     },
     {
@@ -54,8 +54,18 @@ class App extends React.Component {
     this.addTodo = this.addTodo.bind(this);
   }
 
-  addTodo() {
-    this.newTodo(0, 'Test');
+  addTodo(status, contents) {
+    let todoContents = status;
+    let todoStatus = contents;
+
+    if (!contents) {
+      todoContents = prompt("What do you need to do?")
+    }
+    if (!status) {
+      todoStatus = 0
+    }
+
+    this.newTodo(todoStatus, todoContents);
     this.forceUpdate();
   }
 
@@ -71,7 +81,6 @@ class App extends React.Component {
     };
 
     data.push(newTodo); 
-    console.log(data)
   }
 
   renderTodos() {
@@ -88,7 +97,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Bullet Journal</h1>
-        <button onClick={this.addTodo}>New Todo</button>
+        <button onClick={()=>this.addTodo()}>New Todo</button>
         {this.renderTodos()}
       </div>
     );
