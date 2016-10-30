@@ -1,9 +1,16 @@
 import React from 'react';
 
 class Todo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: this.props.status
+    }
+  }
+
   render() {
     const status = ['.','x','>','?'];
-    const index = this.props.status;
+    const index = this.state.status;
     const todoStatus = status[index];
 
     return(
