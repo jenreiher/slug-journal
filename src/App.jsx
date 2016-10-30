@@ -54,29 +54,25 @@ class App extends React.Component {
     this.addTodo = this.addTodo.bind(this);
   }
 
-  addTodo(status, contents) {
-    let todoContents = status;
-    let todoStatus = contents;
+  addTodo(contents) {
+    let todoContents = contents;
 
     if (!contents) {
       todoContents = prompt("What do you need to do?")
     }
-    if (!status) {
-      todoStatus = 0
-    }
 
-    this.newTodo(todoStatus, todoContents);
+    this.newTodo(todoContents);
     this.forceUpdate();
   }
 
-  newTodo(status, contents) {
+  newTodo(contents) {
     let id = data.length;
     let timestamp = moment(new Date()).format();
 
     let newTodo = {
       id: id,
       timestamp: timestamp,
-      status: status,
+      status: 0,
       contents: contents
     };
 
