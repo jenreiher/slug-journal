@@ -46,19 +46,19 @@ var data = [
     } 
   ];
 
-function addTodo(contents) {
+function addTodo(contents, date) {
   let todoContents = contents;
+  if (!todoContents) todoContents = prompt("What do you need to do?");
 
-  if (!contents) {
-    todoContents = prompt("What do you need to do?")
-  }
+  let timestamp = date
+  if (!timestamp) timestamp = moment(new Date()).format();
+  console.log(timestamp)
 
-  newTodo(todoContents);
+  newTodo(todoContents, timestamp);
 }
 
-function newTodo(contents) {
+function newTodo(contents, timestamp) {
   let id = data.length;
-  let timestamp = moment(new Date()).format();
 
   let newTodo = {
     id: id,

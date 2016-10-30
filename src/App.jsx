@@ -10,6 +10,11 @@ class App extends React.Component {
     this.rerender = this.rerender.bind(this);
   }
 
+  componentWillUpdate(nextprops) {
+    // console.log("new props in app!", nextprops)
+    // instead of forcing rerender, could something happen here instead to trigger the udpate?
+  }
+
   newTodo() {
     addTodo();
     this.rerender();

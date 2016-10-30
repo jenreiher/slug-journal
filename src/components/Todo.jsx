@@ -15,7 +15,8 @@ class Todo extends React.Component {
 
   setStatus(val) {
     if (val === 2) {
-      addTodo(this.props.data.contents);
+      let newDate = moment(this.props.data.timestamp).add(1, "days").format();
+      addTodo(this.props.data.contents, newDate);
       this.props.rerender();
     } 
     this.setState({status: val});
