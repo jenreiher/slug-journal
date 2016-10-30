@@ -14,12 +14,12 @@ h1 {
   height: auto;
   text-align: center;
   position: relative; 
-  top: -15px;
+  top: -20px;
   z-index: 100;
+}
 
-  div {
-    display: inline-block;
-    padding: 7px;
-    text-align: center;
-  }
+.status {
+  display: inline-block;
+  padding: 7px;
+  text-align: center;
 }

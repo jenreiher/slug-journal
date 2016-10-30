@@ -15,7 +15,7 @@ class DisplayStatus extends React.Component {
     let index = Object.keys(this.props.data);
 
     return(
-      <div onClick={this.setParentStatus}>
+      <div onClick={this.setParentStatus} className="status">
         {this.props.data[index]}
       </div>
     );

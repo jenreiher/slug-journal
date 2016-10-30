@@ -3,8 +3,8 @@ import Todo from './components/Todo.jsx'
 import moment from 'moment';
 
 class App extends React.Component {
-  renderTodos() {
-    let data =
+  data() {
+    return(
       [ 
         { 
           '2016-10-30': [
@@ -35,26 +35,35 @@ class App extends React.Component {
             {
               id: 4,
               timestamp: '2016-10-31',
-              status: 0,
+              status: 1,
               contents: 'Make todo status change a pop up'
+            },
+            {
+              id: 5,
+              timestamp: '2016-10-31',
+              status: 0,
+              contents: 'If status changes to 1 copy to next days date'
             }
           ]
         },
         {
           '2016-10-31': [
             {
-              id: 5,
+              id: 6,
               timestamp: '2016-10-31',
               status: 0,
-              contents: 'If status changes to 1 copy to next days date'
+              contents: 'Add new todo'
             } 
           ]
         }
-    ];
+      ]
+    );
+  }
 
+  renderTodos() {
     return(
       <div>
-        {data.map((date, index)=> (
+        {this.data().map((date, index)=> (
           <div key={index}>
             <h2>{moment(Object.keys(date)[0]).format('MMMM Do[,] YYYY')}</h2>
             <div>

@@ -24,11 +24,15 @@ class Status extends React.Component {
     )
   }
 
+  componentDidUpdate() {
+    if (this.getStatus(this.state.status) === '>') {
+      console.log(this.state)
+    } 
+    return false;
+  }
+
 
   toggleClass() {
-    // when clicked, displays a little pop up which...
-    // maps over status() and return each of the values into a <DisplayStatus /> component, with a setStatus function on it.
-    // if the <DisplayStatus /> is clicked, execute the parent setStatus function
     if (this.state.toggleClass === '') {
       this.setState({toggleClass: 'hidden'});
     } else {
@@ -62,7 +66,7 @@ class Status extends React.Component {
 
     return(
       <div>
-        <div onClick={this.toggleClass}>{todoStatus}</div>
+        <div className="status" onClick={this.toggleClass}>{todoStatus}</div>
         <div className={this.state.toggleClass}>
           {this.displayStatuses()}
         </div>
