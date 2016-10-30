@@ -8,7 +8,7 @@ class Todo extends React.Component {
     return(
       <div>
         <Status status={this.props.data.status} />
-        <div>{this.props.data.contents}</div>
+        <div className="todo-text">{this.props.data.contents}</div>
         <br />
       </div>
     )
