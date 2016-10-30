@@ -27,13 +27,9 @@ class Status extends React.Component {
   }
 
   toggleStatus() {
-    let index = this.state.status + 1;
-    if (index >= this.status().length) {
-      index = 0;
-    }
-
-    this.state.status = index
-    return this.setState(this.state);
+    // when clicked, displays a little pop up which...
+    // maps over status() and return each of the values into a <DisplayStatus /> component, with a setStatus function on it.
+    // if the <DisplayStatus /> is clicked, execute the parent setStatus function
   }
 
   render() {  
