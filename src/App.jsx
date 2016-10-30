@@ -25,19 +25,25 @@ class App extends React.Component {
               timestamp: '2016-10-30',
               status: 1,
               contents: 'Toggle status'
+            },
+            {
+              id: 3,
+              timestamp: '2016-10-31',
+              status: 1,
+              contents: 'Group todos by date'
+            },
+            {
+              id: 4,
+              timestamp: '2016-10-31',
+              status: 0,
+              contents: 'Make todo status change a pop up'
             }
           ]
         },
         {
           '2016-10-31': [
             {
-              id: 3,
-              timestamp: '2016-10-31',
-              status: 0,
-              contents: 'Group todos by date'
-            },
-            {
-              id: 4,
+              id: 5,
               timestamp: '2016-10-31',
               status: 0,
               contents: 'If status changes to 1 copy to next days date'
@@ -65,7 +71,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello React :)</h1>
+        <h1>Bullet Journal</h1>
         {this.renderTodos()}
       </div>
     );
