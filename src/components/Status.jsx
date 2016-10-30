@@ -1,13 +1,16 @@
 import React from 'react';
+import DisplayStatus from '../components/DisplayStatus.jsx';
 
 class Status extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status || 0
+      status: this.props.status || 0,
+      toggleClass: 'hidden'
     };
 
-    this.toggleStatus = this.toggleStatus.bind(this);
+    this.toggleClass = this.toggleClass.bind(this);
+    this.setStatus = this.setStatus.bind(this);
   }
 
   status() {
@@ -21,15 +24,36 @@ class Status extends React.Component {
     )
   }
 
+
+  toggleClass() {
+    // when clicked, displays a little pop up which...
+    // maps over status() and return each of the values into a <DisplayStatus /> component, with a setStatus function on it.
+    // if the <DisplayStatus /> is clicked, execute the parent setStatus function
+    if (this.state.toggleClass === '') {
+      this.setState({toggleClass: 'hidden'});
+    } else {
+      this.setState({toggleClass: ''});
+    }
+  }
+
   getStatus(index) {
     let status = this.status()[index]
     return status[index];
   }
 
-  toggleStatus() {
-    // when clicked, displays a little pop up which...
-    // maps over status() and return each of the values into a <DisplayStatus /> component, with a setStatus function on it.
-    // if the <DisplayStatus /> is clicked, execute the parent setStatus function
+  displayStatuses() {
+    return(
+      <div className="statuses">
+        {this.status().map((displayVal, index)=> (
+          <DisplayStatus key={index} data={displayVal} onClick={this.setStatus} />
+        ))}
+      </div>
+    );
+  }
+
+  setStatus(val) {
+    this.setState({status: val});
+    this.toggleClass();
   }
 
   render() {  
@@ -37,7 +61,12 @@ class Status extends React.Component {
     const todoStatus = this.getStatus(index);
 
     return(
-      <div onClick={this.toggleStatus}>{todoStatus}</div>
+      <div>
+        <div onClick={this.toggleClass}>{todoStatus}</div>
+        <div className={this.state.toggleClass}>
+          {this.displayStatuses()}
+        </div>
+      </div>
     )
   }
 
