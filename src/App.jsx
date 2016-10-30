@@ -11,8 +11,8 @@ class App extends React.Component {
   }
 
   componentWillUpdate(nextprops) {
-    // console.log("new props in app!", nextprops)
     // instead of forcing rerender, could something happen here instead to trigger the udpate?
+
   }
 
   newTodo() {
@@ -22,6 +22,8 @@ class App extends React.Component {
 
   rerender() {
     // temporarily forcing update until data is actually flowing properly
+    // should data maybe move to state here to fix this?? 
+    // yes good idea, self!
     this.forceUpdate();
   }
 
