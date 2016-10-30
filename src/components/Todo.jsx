@@ -4,7 +4,7 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status || 0
+      status: this.props.data.status || 0
     };
 
     this.toggleStatus = this.toggleStatus.bind(this);
@@ -43,7 +43,7 @@ class Todo extends React.Component {
     return(
       <div>
         <div onClick={this.toggleStatus}>{todoStatus}</div>
-        <div>{this.props.contents}</div>
+        <div>{this.props.data.contents}</div>
         <br />
       </div>
     )
@@ -52,8 +52,7 @@ class Todo extends React.Component {
 }
 
 Todo.propTypes = {
-  status: React.PropTypes.number.isRequired,
-  contents: React.PropTypes.string.isRequired
+  data: React.PropTypes.object.isRequired
 }
 
 export default Todo;

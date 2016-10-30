@@ -40,7 +40,7 @@ class App extends React.Component {
     return(
       <div>
         {data.map(todo=> (
-          <Todo status={todo.status} contents={todo.contents} key={todo.id} />
+          <Todo data={todo} key={todo.id} />
         ))}
       </div>
     );
