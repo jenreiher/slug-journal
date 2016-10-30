@@ -55,8 +55,8 @@ class App extends React.Component {
     return(
       <div>
         {data.map((date, index)=> (
-          <div>
-            <h2 key={index}>{moment(Object.keys(date)[0]).format('MMMM Do[,] YYYY')}</h2>
+          <div key={index}>
+            <h2>{moment(Object.keys(date)[0]).format('MMMM Do[,] YYYY')}</h2>
             <div>
               {date[Object.keys(date)].map(todo=> (
                 <Todo data={todo} key={todo.id} />
