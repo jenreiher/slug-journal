@@ -1,6 +1,6 @@
 import React from 'react';
 import Todo from './components/Todo.jsx'
-import {data, addTodo, newTodo} from './helpers/todos.jsx'
+import {data, addTodo} from './helpers/todos.jsx'
 
 class App extends React.Component {
 
@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
   }
 
-  updateTodolist() {
+  newTodo() {
     addTodo();
     // temporarily forcing update until data is actually flowing properly
     this.forceUpdate();
@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Bullet Journal</h1>
-        <button onClick={()=> this.updateTodolist()}>New Todo</button>
+        <button onClick={()=> this.newTodo()}>New Todo</button>
         {this.renderTodos()}
       </div>
     );

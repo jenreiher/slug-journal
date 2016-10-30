@@ -8,24 +8,22 @@ class DisplayStatus extends React.Component {
   }
 
   setParentStatus() {
-    this.props.onClick(Object.keys(this.props.data));
+    this.props.onClick(this.props.index);
   }
 
   render() {
-    let index = Object.keys(this.props.data);
-
     return(
       <div onClick={this.setParentStatus} className="status">
-        {this.props.data[index]}
+        {this.props.data}
       </div>
     );
   }
-
 }
 
 DisplayStatus.propTypes = {
   onClick: React.PropTypes.func,
-  data: React.PropTypes.object.isRequired,
+  data: React.PropTypes.string.isRequired,
+  index: React.PropTypes.number.isRequired
 }
 
 export default DisplayStatus;
