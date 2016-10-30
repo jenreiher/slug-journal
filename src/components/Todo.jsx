@@ -14,7 +14,6 @@ class Todo extends React.Component {
   }
 
   componentDidUpdate() {
-    // console.log("state check", this.state.status)
     if (this.state.status === 2) {
       console.log("status is forwarded")
     } 
@@ -27,7 +26,7 @@ class Todo extends React.Component {
   render() {
     return(
       <div>
-        <Status status={this.props.data.status} setStatus={this.setStatus} />
+        <Status status={this.state.status} setStatus={this.setStatus} />
         <div className="todo-text">{this.props.data.contents}</div>
         <br />
       </div>
