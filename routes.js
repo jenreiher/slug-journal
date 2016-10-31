@@ -115,8 +115,7 @@ router.post('/todos/new', function(req, res) {
   // remove this for production
   res.setHeader('Access-Control-Allow-Origin', '*');
   try{req.body = JSON.parse(Object.keys(req.body)[0])}catch(err){req.body = req.body}
-  console.log(req.body.contents)
-  res.json("success")
+  res.json(req.body)
 });
 
 module.exports = router;
