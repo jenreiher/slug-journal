@@ -1,6 +1,6 @@
 import React from 'react';
 import Todo from './components/Todo.jsx'
-import {data, addTodo} from './helpers/todos.jsx'
+import {addTodo} from './helpers/todos.jsx'
 
 class App extends React.Component {
 
@@ -14,8 +14,17 @@ class App extends React.Component {
     this.newTodo = this.newTodo.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({data: data});
+  componentDidMount() {
+    fetch('http://localhost:8000/todos', {
+      method: 'get',
+      mode: 'cors'
+    }).then(response=> {
+      return response.json()
+    })
+    .then(responseData=> {
+      let data = responseData
+      return this.setState({data: data});
+    });
   }
 
   newTodo(contents, date) {
