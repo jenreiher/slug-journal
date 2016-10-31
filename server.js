@@ -22,6 +22,10 @@ new WebpackDevServer(webpack(config), {
 
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+
 var routes = require('./routes.js')
 app.use('/', routes);
 
