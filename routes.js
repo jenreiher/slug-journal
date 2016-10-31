@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+// var bodyParser = require('body-parser')
+// var jsonParser = bodyParser.json()
+
+// var app = express();
 
 var data = [ 
     {
@@ -47,7 +51,7 @@ var data = [
     {
       id: 7,
       timestamp: '2016-10-31',
-      status: 0,
+      status: 1,
       contents: 'Explore data flow with data mapped to state in app'
     },
     {
@@ -65,8 +69,8 @@ var data = [
     {
       id: 10,
       timestamp: '2016-10-31',
-      status: 0,
-      contents: 'Connect fetch data from database'
+      status: 1,
+      contents: 'Connect fetch data from back end'
     },
     {
       id: 11,
@@ -90,18 +94,29 @@ var data = [
       id: 14,
       timestamp: '2016-10-31',
       status: 0,
-      contents: ''
+      contents: 'Make the app pretty'
     }
   ];
 
 // define the home page route
 router.get('/todos', function(req, res) {
+  // remove this for production
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.json(data);
 });
+
+router.get('/todos/new', function(req, res) {
+  // remove this for production
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+})
 // define the about route
-router.get('/about', function(req, res) {
-  res.send('About birds');
+router.post('/todos/new', function(req, res) {
+  // remove this for production
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  try{req.body = JSON.parse(Object.keys(req.body)[0])}catch(err){req.body = req.body}
+  console.log(req.body.contents)
+  res.json("success")
 });
 
 module.exports = router;
