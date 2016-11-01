@@ -46,10 +46,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Bullet Journal</h1>
-        <button onClick={()=> this.newTodo()}>New Todo</button>
-        {this.renderTodos()}
+      <div className="container">
+        <div className="row">
+          <h1>Bullet Journal</h1>
+          <button onClick={()=> this.newTodo()}>New Todo</button>
+          {this.renderTodos()}
+        </div>
       </div>
     );
   }

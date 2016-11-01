@@ -1,2 +1,23 @@
 // This is the top-level scss file. Import all other files in here.
 @import 'home';
+@import 'status';
+@import 'todo';
+@import 'display-status';
+@import url('https://fonts.googleapis.com/css?family=Loved+by+the+King');
+
+/* Base Styles */
+body {
+  font-family: 'Loved by the King', sans-serif;
+}
+
+/* Helper Styles */
+.hidden {
+  display: none;
+}
+
+/* Typography */
+h1 {
+  color: blue;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
