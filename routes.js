@@ -95,6 +95,12 @@ var data = [
       timestamp: '2016-10-31',
       status: 1,
       contents: 'Make the app pretty'
+    },
+    {
+      id: 15,
+      timestamp: '2016-10-31',
+      status: 1,
+      contents: 'Make the prompt a modal'
     }
   ];
 
