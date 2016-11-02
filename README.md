@@ -1,4 +1,4 @@
-Sug Journal
+Slug Journal
 =====================
 
 Making the analog digital again.
