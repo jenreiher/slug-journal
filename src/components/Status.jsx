@@ -27,7 +27,7 @@ class Status extends React.Component {
   }
 
   getStatus(index) {
-    let status = this.status()[index]
+    let status = this.props.statuses[index]
     return status;
   }
 
@@ -69,7 +69,8 @@ class Status extends React.Component {
 
 Status.propTypes = {
   status: React.PropTypes.number.isRequired,
-  setStatus: React.PropTypes.func.isRequired
+  setStatus: React.PropTypes.func.isRequired,
+  statuses: React.PropTypes.array.isRequired
 }
 
 export default Status;
