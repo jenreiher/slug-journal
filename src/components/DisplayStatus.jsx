@@ -12,10 +12,11 @@ class DisplayStatus extends React.Component {
   }
 
   render() {
+    let className = `fa ${this.props.data} fa-lg`
     return(
-      <div onClick={this.setParentStatus} className="status">
-        {this.props.data}
-      </div>
+      <button onClick={this.setParentStatus} className="btn">
+        <i className={className} />
+      </button>
     );
   }
 }

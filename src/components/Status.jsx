@@ -14,7 +14,7 @@ class Status extends React.Component {
 
   status() {
     return(
-      [ '.', 'x', '>', '?' ]
+      [ 'fa-radio-checked', 'fa-times-circle', 'fa-circle-arrow-right', 'fa-question-circle' ]
     )
   }
 
@@ -48,11 +48,16 @@ class Status extends React.Component {
 
   render() {
     const index = this.props.status;
-    const todoStatus = this.getStatus(index);
+    const todoStatus = `fa ${this.getStatus(index)} fa-lg`;
 
     return(
-      <div>
-        <div className="status" onClick={this.toggleClass}>{todoStatus}</div>
+      <div className="status">
+        <button
+          onClick={this.toggleClass}
+          className="btn"
+        >
+          <i className={todoStatus} />
+        </button>
         <div className={this.state.toggleClass}>
           {this.displayStatuses()}
         </div>

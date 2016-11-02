@@ -1,0 +1,34 @@
+header {
+  padding: 10px 0;
+
+  button {
+    text-align: left;
+  }
+}
+
+.left-margin {
+  border-left: 1px solid pink;
+  min-height: 40px;
+};
+
+.todo-container {
+  border-bottom: 2px solid aliceblue;
+  text-align: left;
+  margin-left: -100px;
+
+  .todo {
+    display: block;
+    padding: 0 0 0 100px;
+
+    .status {
+      display: inline-block;
+    }
+
+    .todo-text {
+      display: inline;
+      line-height: 2em;
+    }
+  }
+}
+
+

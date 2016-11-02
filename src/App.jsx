@@ -1,6 +1,7 @@
 import React from 'react';
 import Todo from './components/Todo.jsx'
 import {addTodo} from './helpers/todos.jsx'
+import moment from 'moment';
 
 class App extends React.Component {
 
@@ -46,9 +47,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Bullet Journal</h1>
-        <button onClick={()=> this.newTodo()}>New Todo</button>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xs-offset-2">
+            <div className="left-margin">
+              <header>
+                <h1>Bullet Journal</h1>
+                <h3>{moment(Date.now()).format('MMMM Do YYYY')}</h3>
+                <button onClick={()=> this.newTodo()} className="btn"><i className="fa fa-plus-circle fa-2x"></i></button>
+              </header>
+            </div>
+          </div>
+        </div>
         {this.renderTodos()}
       </div>
     );
