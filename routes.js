@@ -57,19 +57,19 @@ var data = [
     {
       id: 8,
       timestamp: '2016-10-31',
-      status: 0,
+      status: 1,
       contents: 'Set up database'
     },
     {
       id: 9,
       timestamp: '2016-10-31',
-      status: 0,
+      status: 1,
       contents: 'Seed database with this example data'
     },
     {
       id: 10,
       timestamp: '2016-10-31',
-      status: 1,
+      status: 0,
       contents: 'Connect fetch data from back end'
     },
     {
@@ -93,8 +93,14 @@ var data = [
     {
       id: 14,
       timestamp: '2016-10-31',
-      status: 0,
+      status: 1,
       contents: 'Make the app pretty'
+    },
+    {
+      id: 15,
+      timestamp: '2016-10-31',
+      status: 1,
+      contents: 'Make the prompt a modal'
     }
   ];
 
