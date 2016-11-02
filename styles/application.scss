@@ -20,13 +20,19 @@ body {
 /* Helper Styles */
 .hidden {
   display: none;
+  transition: all 500ms ease-out 1s;
 }
 
 /* Typography */
-h1 {
+h2 {
   color: blue;
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+h3 {
+  text-align: left;
+  margin: 0 0 0 15px;
 }
 
 .fa {
@@ -35,14 +41,24 @@ h1 {
 
 .btn {
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   background: none;
   text-transform: uppercase;
   height: auto;
-  padding: 2px 4px;
+  padding: 4px;
+  margin: 2px;
   color: blue;
 
   &:hover {
     color: black;
   }
+}
+
+label {
+  margin: 0 10px;
+}
+
+input {
+  margin: 0 10px;
+  border-radius: 4px;
 }

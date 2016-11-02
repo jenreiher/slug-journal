@@ -12,7 +12,7 @@ header {
 };
 
 .todo-container {
-  border-bottom: 2px solid aliceblue;
+  border-top: 2px solid aliceblue;
   text-align: left;
   margin-left: -100px;
 
@@ -31,4 +31,7 @@ header {
   }
 }
 
-
+.new-todo {
+  min-height: 45px;
+  margin: 20px 0;
+}
