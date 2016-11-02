@@ -20,14 +20,29 @@ new WebpackDevServer(webpack(config), {
   console.log('Running on port 3000');
 });
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
+const express     = require('express');
+const app         = express();
+const bodyParser  = require('body-parser');
+const ENV         = process.env.ENV || "development";
+const knexConfig  = require("./knexfile");
+const knex        = require("knex")(knexConfig[ENV]);
+const morgan      = require('morgan');
+const knexLogger  = require('knex-logger');
+const routes      = require('./routes.js')
+
+// for parsing application/x-www-form-urlencoded and json data
+app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
 
-var routes = require('./routes.js')
-app.use('/', routes);
+// Load the logger first so all (static) HTTP requests are logged to STDOUT
+// 'dev' = Concise output colored by response status for development use.
+//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+app.use(morgan('dev'));
+
+// Log knex SQL queries to STDOUT as well
+app.use(knexLogger(knex));
+
+app.use('/', routes(knex));
 
 app.listen(8000, '0.0.0.0', function () {
   console.log('Example app listening on port 8000!');
@@ -56,8 +71,6 @@ app.listen(8000, '0.0.0.0', function () {
 // const knex        = require("knex")(knexConfig[ENV]);
 // const morgan      = require('morgan');
 // const knexLogger  = require('knex-logger');
-
-
 
 
 // initialize the server and configure support for ejs templates
