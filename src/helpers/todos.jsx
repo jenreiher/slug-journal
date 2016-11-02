@@ -8,7 +8,6 @@ function addTodo(contents, date) {
   let timestamp = date
   if (!timestamp) timestamp = moment(new Date()).format();
 
-console.log("todocontents", todoContents);
   let body = JSON.stringify({
     status: 1,
     contents: todoContents
