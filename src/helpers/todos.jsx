@@ -8,11 +8,13 @@ function addTodo(contents, date) {
   let timestamp = date
   if (!timestamp) timestamp = moment(new Date()).format();
 
+console.log("todocontents", todoContents);
   let body = JSON.stringify({
-    timestamp: timestamp,
-    status: 0,
+    status: 1,
     contents: todoContents
   });
+
+  let newTodo = {}
 
   fetch('http://localhost:8000/todos/new', {
       method: 'POST',
@@ -29,7 +31,7 @@ function addTodo(contents, date) {
       console.log(responseData);
   });
 
-  let newTodo = {
+  newTodo = {
     id: 100,
     timestamp: timestamp,
     status: 0,

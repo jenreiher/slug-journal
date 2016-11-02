@@ -30,10 +30,20 @@ module.exports = (knex) => {
   router.get('/todos/new', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
   })
+
   router.post('/todos/new', function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
-    try{req.body = JSON.parse(Object.keys(req.body)[0])}catch(err){req.body = req.body}
-    res.json(req.body)
+    console.log(req)
+    knex('todos')
+      .returning('id')
+      .insert({
+        contents: req.contents,
+        status_id: req.status
+      })
+      .then((results)=> {
+        res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
+        console.log(results[0]);
+        res.json(results);
+    });
   });
 
   return router;

@@ -22,6 +22,12 @@ class Todo extends React.Component {
     this.setState({status: val});
   }
 
+  // TODO update database with latest value of todo
+    // in the appropriate lifecyle method (component will update?)
+    // check that the new prop is different from the old prop
+    // if it is, post to the put route todos/:id
+    // update the status_id to this.state.status + 1
+
   render() {
     return(
       <div className="todo-container">
@@ -38,7 +44,6 @@ class Todo extends React.Component {
       </div>
     );
   }
-
 }
 
 Todo.propTypes = {
