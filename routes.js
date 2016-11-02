@@ -3,7 +3,19 @@ var router = express.Router();
 
 module.exports = (knex) => {
   
-  // define the home page route
+  // get all statuses
+  router.get('/status', function(req, res) {
+    knex
+      .select()
+      .table("status")
+      .orderBy('id', 'asc')
+      .then((results)=> {
+        res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
+        res.json(results);
+      });
+  });
+
+  // get all todos
   router.get('/todos', function(req, res) {
     knex
       .select()
@@ -14,10 +26,10 @@ module.exports = (knex) => {
     });
   });
 
+ // add new todos
   router.get('/todos/new', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
   })
-  // define the about route
   router.post('/todos/new', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
     try{req.body = JSON.parse(Object.keys(req.body)[0])}catch(err){req.body = req.body}
