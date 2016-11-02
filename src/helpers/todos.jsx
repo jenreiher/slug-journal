@@ -20,24 +20,24 @@ function addTodo(contents, date) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
-      body: body,
-      mode: 'no-cors'
+      body: body
     }).then(response=> {
       return response.json()
     })
     .then(responseData=> {
-      let data = responseData
-      console.log(responseData);
+      newTodo = {
+        id: responseData.id,
+        timestamp: responseData.created_at,
+        status: responseData.status_id,
+        contents: responseData.contents
+      }
+
+      console.log(newTodo);
+      return newTodo; 
   });
 
-  newTodo = {
-    id: 100,
-    timestamp: timestamp,
-    status: 0,
-    contents: todoContents
-  }
+  
 
-  return newTodo; 
 }
 
 export {addTodo};
