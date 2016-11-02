@@ -12,12 +12,6 @@ class Status extends React.Component {
     this.setStatus = this.setStatus.bind(this);
   }
 
-  status() {
-    return(
-      [ 'fa-radio-checked', 'fa-times-circle', 'fa-circle-arrow-right', 'fa-question-circle' ]
-    )
-  }
-
   toggleClass() {
     if (this.state.toggleClass === '') {
       this.setState({toggleClass: 'hidden'});
