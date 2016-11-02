@@ -5,8 +5,8 @@ function addTodo(contents, date) {
   let todoContents = contents;
   if (!todoContents) todoContents = prompt("What do you need to do?");
 
-  let timestamp = date
-  if (!timestamp) timestamp = moment(new Date()).format();
+  // let timestamp = date
+  // if (!timestamp) timestamp = moment(new Date()).format();
 
   let body = JSON.stringify({
     status: 1,
@@ -16,28 +16,26 @@ function addTodo(contents, date) {
   let newTodo = {}
 
   fetch('http://localhost:8000/todos/new', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      body: body
-    }).then(response=> {
-      return response.json()
-    })
-    .then(responseData=> {
-      newTodo = {
-        id: responseData.id,
-        timestamp: responseData.created_at,
-        status: responseData.status_id,
-        contents: responseData.contents
-      }
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    },
+    body: body
+  }).then(response=> {
+    return response.json()
+  })
+  .then(responseData=> {
+    newTodo = responseData;
+    return newTodo = responseData;
+  })
 
-      console.log(newTodo);
-      return newTodo; 
-  });
+// figure out how to correctly get this to set!
+  newTodo = {
+    contents: todoContents,
+    status: 1
+  }
 
-  
-
+  return newTodo;
 }
 
 export {addTodo};

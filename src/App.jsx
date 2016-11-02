@@ -63,6 +63,7 @@ class App extends React.Component {
     if (this.state.inputVal) contents = this.state.inputVal;
     let newTodo = addTodo(contents);
 
+    console.log("new todo in <App />", newTodo);
     this.state.data.push(newTodo);
     this.state.inputVal = ''
     this.setState(this.state);
@@ -71,7 +72,7 @@ class App extends React.Component {
 
   fwdTodo(contents, date) {
     let newTodo = addTodo(contents, date);
-
+    
     this.state.data.push(newTodo);
     this.setState(this.state);
   }
@@ -79,8 +80,8 @@ class App extends React.Component {
   renderTodos() {
     return(
       <div>
-        {this.state.data.map((todo)=> (
-          <Todo data={todo} statuses={this.state.statuses} key={todo.id} fwdTodo={this.fwdTodo} />
+        {this.state.data.map((todo, index)=> (
+          <Todo data={todo} statuses={this.state.statuses} key={index} fwdTodo={this.fwdTodo} />
         ))}
       </div>
     );
