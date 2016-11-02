@@ -31,9 +31,10 @@ class Status extends React.Component {
   }
 
   displayStatuses() {
+
     return(
       <div className="statuses">
-        {this.status().map((item, index)=> (
+        {this.props.statuses.map((item, index)=> (
           <DisplayStatus key={index} data={item} index={index} setStatus={this.setStatus} />
         ))}
       </div>
