@@ -1,4 +1,6 @@
 // This is the top-level scss file. Import all other files in here.
+/*$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";*/
+@import "bootstrap-custom";
 @import 'home';
 @import 'status';
 @import 'todo';
@@ -8,6 +10,11 @@
 /* Base Styles */
 body {
   font-family: 'Loved by the King', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #fefdff;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* Helper Styles */
@@ -20,4 +27,22 @@ h1 {
   color: blue;
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+.fa {
+  transform: rotate(-3deg);
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  background: none;
+  text-transform: uppercase;
+  height: auto;
+  padding: 2px 4px;
+  color: blue;
+
+  &:hover {
+    color: black;
+  }
 }
