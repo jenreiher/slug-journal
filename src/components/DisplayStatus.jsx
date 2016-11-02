@@ -8,7 +8,7 @@ class DisplayStatus extends React.Component {
   }
 
   setParentStatus() {
-    this.props.onClick(this.props.index);
+    this.props.setStatus(this.props.index);
   }
 
   render() {
@@ -22,7 +22,7 @@ class DisplayStatus extends React.Component {
 }
 
 DisplayStatus.propTypes = {
-  onClick: React.PropTypes.func,
+  setStatus: React.PropTypes.func,
   data: React.PropTypes.string.isRequired,
   index: React.PropTypes.number.isRequired
 }

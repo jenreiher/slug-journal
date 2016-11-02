@@ -12,12 +12,6 @@ class Status extends React.Component {
     this.setStatus = this.setStatus.bind(this);
   }
 
-  status() {
-    return(
-      [ 'fa-radio-checked', 'fa-times-circle', 'fa-circle-arrow-right', 'fa-question-circle' ]
-    )
-  }
-
   toggleClass() {
     if (this.state.toggleClass === '') {
       this.setState({toggleClass: 'hidden'});
@@ -27,7 +21,7 @@ class Status extends React.Component {
   }
 
   getStatus(index) {
-    let status = this.status()[index]
+    let status = this.props.statuses[index]
     return status;
   }
 
@@ -40,7 +34,7 @@ class Status extends React.Component {
     return(
       <div className="statuses">
         {this.status().map((item, index)=> (
-          <DisplayStatus key={index} data={item} index={index} onClick={this.setStatus} />
+          <DisplayStatus key={index} data={item} index={index} setStatus={this.setStatus} />
         ))}
       </div>
     );
@@ -69,7 +63,8 @@ class Status extends React.Component {
 
 Status.propTypes = {
   status: React.PropTypes.number.isRequired,
-  setStatus: React.PropTypes.func.isRequired
+  setStatus: React.PropTypes.func.isRequired,
+  statuses: React.PropTypes.array.isRequired
 }
 
 export default Status;

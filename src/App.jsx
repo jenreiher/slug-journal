@@ -12,7 +12,8 @@ class App extends React.Component {
       data: [],
       inputClass: 'hidden',
       newButtonClass: '',
-      inputVal: ''
+      inputVal: '',
+      statuses: []
     }
 
     this.newTodo = this.newTodo.bind(this);
@@ -31,6 +32,18 @@ class App extends React.Component {
     .then(responseData=> {
       let data = responseData
       return this.setState({data: data});
+    });
+
+    fetch('http://localhost:8000/status', {
+      method: 'get',
+      mode: 'cors'
+    }).then(response=> {
+      return response.json()
+    })
+    .then(responseData=> {
+      responseData.forEach((element)=> this.state.statuses.push(element.display_value));
+
+      return this.setState(this.state);
     });
   }
 
@@ -67,7 +80,7 @@ class App extends React.Component {
     return(
       <div>
         {this.state.data.map((todo)=> (
-          <Todo data={todo} key={todo.id} fwdTodo={this.fwdTodo} />
+          <Todo data={todo} statuses={this.state.statuses} key={todo.id} fwdTodo={this.fwdTodo} />
         ))}
       </div>
     );
