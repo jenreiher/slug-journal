@@ -40,7 +40,7 @@ class Status extends React.Component {
     return(
       <div className="statuses">
         {this.status().map((item, index)=> (
-          <DisplayStatus key={index} data={item} index={index} onClick={this.setStatus} />
+          <DisplayStatus key={index} data={item} index={index} setStatus={this.setStatus} />
         ))}
       </div>
     );

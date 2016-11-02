@@ -7,7 +7,7 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.data.status || 0,
+      status: (this.props.data.status_id - 1 ) || 0,
     };
 
     this.setStatus = this.setStatus.bind(this);
