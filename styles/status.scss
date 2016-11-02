@@ -1,0 +1,17 @@
+.statuses {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  padding: 8px;
+  z-index: 1000;
+  border-radius: 5px;
+  background: white;
+  text-align: center;
+  -webkit-box-shadow: 4px 4px 29px -6px rgba(204,204,204,0.5);
+  -moz-box-shadow: 4px 4px 29px -6px rgba(204,204,204,0.5);
+  box-shadow: 4px 4px 29px -6px rgba(204,204,204,0.5);
+
+  .fa {
+    margin: 7px 5px;
+  }
+}

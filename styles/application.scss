@@ -1,2 +1,64 @@
 // This is the top-level scss file. Import all other files in here.
+/*$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";*/
+@import "bootstrap-custom";
 @import 'home';
+@import 'status';
+@import 'todo';
+@import 'display-status';
+@import url('https://fonts.googleapis.com/css?family=Loved+by+the+King');
+
+/* Base Styles */
+body {
+  font-family: 'Loved by the King', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #fefdff;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Helper Styles */
+.hidden {
+  display: none;
+  transition: all 500ms ease-out 1s;
+}
+
+/* Typography */
+h2 {
+  color: blue;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h3 {
+  text-align: left;
+  margin: 0 0 0 15px;
+}
+
+.fa {
+  transform: rotate(-3deg);
+}
+
+.btn {
+  border: none;
+  border-radius: 15px;
+  background: none;
+  text-transform: uppercase;
+  height: auto;
+  padding: 4px;
+  margin: 2px;
+  color: blue;
+
+  &:hover {
+    color: black;
+  }
+}
+
+label {
+  margin: 0 10px;
+}
+
+input {
+  margin: 0 10px;
+  border-radius: 4px;
+}

@@ -7,7 +7,7 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.data.status || 0,
+      status: (this.props.data.status_id - 1 ) || 0,
     };
 
     this.setStatus = this.setStatus.bind(this);
@@ -17,17 +17,24 @@ class Todo extends React.Component {
     if (val === 2) {
       let newDate = moment(this.props.data.timestamp).add(1, "days").format();
       let contents = this.props.data.contents
-      this.props.newTodo(contents, newDate);
+      this.props.fwdTodo(contents, newDate);
     } 
     this.setState({status: val});
   }
 
   render() {
     return(
-      <div>
-        <Status status={this.state.status} setStatus={this.setStatus} />
-        <div className="todo-text">{this.props.data.contents}</div>
-        <br />
+      <div className="todo-container">
+        <div className="todo">
+          <div className="row">
+            <div className="col-xs-1 col-xs-offset-1">
+              <Status statuses={this.props.statuses} status={this.state.status} setStatus={this.setStatus} />
+            </div>
+            <div className="col-xs-10 left-margin">
+              <div className="todo-text">{this.props.data.contents}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -36,7 +43,8 @@ class Todo extends React.Component {
 
 Todo.propTypes = {
   data: React.PropTypes.object.isRequired,
-  newTodo: React.PropTypes.func.isRequired
+  fwdTodo: React.PropTypes.func.isRequired,
+  statuses: React.PropTypes.array.isRequired
 }
 
 export default Todo;
