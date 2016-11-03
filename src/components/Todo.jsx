@@ -13,20 +13,35 @@ class Todo extends React.Component {
     this.setStatus = this.setStatus.bind(this);
   }
 
-  setStatus(val) {
-    if (val === 2) {
-      let newDate = moment(this.props.data.timestamp).add(1, "days").format();
-      let contents = this.props.data.contents
-      this.props.fwdTodo(contents, newDate);
-    } 
-    this.setState({status: val});
-  }
 
   // TODO update database with latest value of todo
     // in the appropriate lifecyle method (component will update?)
     // check that the new prop is different from the old prop
     // if it is, post to the put route todos/:id
     // update the status_id to this.state.status + 1
+
+  setStatus(val) {
+    if (val === 2) {
+      let newDate = moment(this.props.data.timestamp).add(1, "days").format();
+      let contents = this.props.data.contents
+      this.props.fwdTodo(contents, newDate);
+    }
+    // fetch(`http://localhost:8000/todos/${this.props.data.id}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    //   },
+    //   body: body
+    // }).then(response=> {
+    //   return response.json()
+    // })
+    // .then(responseData=> {
+    //   newTodo = responseData;
+    //   return newTodo = responseData;
+    // }) 
+    // should this be within the response?
+    this.setState({status: val});
+  }
 
   render() {
     return(

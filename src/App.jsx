@@ -16,6 +16,7 @@ class App extends React.Component {
       statuses: []
     }
 
+    this.addTodo = this.addTodo.bind(this);
     this.newTodo = this.newTodo.bind(this);
     this.fwdTodo = this.fwdTodo.bind(this);
     this.toggleInput = this.toggleInput.bind(this);
@@ -47,11 +48,38 @@ class App extends React.Component {
     });
   }
 
+  addTodo(contents, date) {
+    let timestamp = date
+    let todoContents = contents;
+    if (!todoContents) todoContents = prompt("What do you need to do?");
+
+    // prepare the body for the post
+    let body = JSON.stringify({
+      status: 1,
+      contents: todoContents
+    });
+
+    fetch('http://localhost:8000/todos/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: body
+    }).then(response=> {
+      return response.json()
+    })
+    .then(responseData=> {
+      this.state.data.push(responseData);
+      this.setState(this.state);
+    });
+  }
+
   handleChange(event) {
     this.setState({inputVal: event.target.value});
   }
 
   toggleInput() {
+    console.log("toggling")
     if (this.state.inputClass === '') {
       this.setState({inputClass: 'hidden', newButtonClass: ''});
     } else {
@@ -61,17 +89,15 @@ class App extends React.Component {
 
   newTodo(contents) {
     if (this.state.inputVal) contents = this.state.inputVal;
-    let newTodo = addTodo(contents);
+    this.addTodo(contents);
 
-    console.log("new todo in <App />", newTodo);
-    this.state.data.push(newTodo);
     this.state.inputVal = ''
     this.setState(this.state);
     this.toggleInput();
   }
 
   fwdTodo(contents, date) {
-    let newTodo = addTodo(contents, date);
+    let newTodo = this.addTodo(contents, date);
     
     this.state.data.push(newTodo);
     this.setState(this.state);
