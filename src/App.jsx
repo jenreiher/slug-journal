@@ -1,6 +1,5 @@
 import React from 'react';
 import Todo from './components/Todo.jsx'
-import {addTodo} from './helpers/todos.jsx'
 import moment from 'moment';
 
 class App extends React.Component {
@@ -49,7 +48,7 @@ class App extends React.Component {
   }
 
   addTodo(contents, date) {
-    let timestamp = date
+    let timestamp = date;
     let todoContents = contents;
     if (!todoContents) todoContents = prompt("What do you need to do?");
 
@@ -61,6 +60,7 @@ class App extends React.Component {
 
     fetch('http://localhost:8000/todos/new', {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
@@ -74,12 +74,33 @@ class App extends React.Component {
     });
   }
 
+  updateTodo(id, status) {
+    let status_id = status + 1;
+    let body = JSON.stringify({
+      status: status_id
+    });
+
+    fetch(`http://localhost:8000/todos/${id}`, {
+      method: 'post',
+      mode: 'cors',
+      cache: 'default',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: body
+    }).then(response=> {
+      return response.json()
+    })
+    .then(responseData=> {
+      return responseData;
+    });
+  }
+
   handleChange(event) {
     this.setState({inputVal: event.target.value});
   }
 
   toggleInput() {
-    console.log("toggling")
     if (this.state.inputClass === '') {
       this.setState({inputClass: 'hidden', newButtonClass: ''});
     } else {
@@ -97,17 +118,33 @@ class App extends React.Component {
   }
 
   fwdTodo(contents, date) {
-    let newTodo = this.addTodo(contents, date);
+    this.addTodo(contents, date);
+
+    // TODO refactor this to just use add todo?
+
+    // fetch(`http://localhost:8000/todos/${this.props.data.id}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    //   },
+    //   body: body
+    // }).then(response=> {
+    //   return response.json()
+    // })
+    // .then(responseData=> {
+    //   newTodo = responseData;
+    //   return newTodo = responseData;
+    // }) 
     
-    this.state.data.push(newTodo);
-    this.setState(this.state);
+    // this.state.data.push(newTodo);
+    // this.setState(this.state);
   }
 
   renderTodos() {
     return(
       <div>
         {this.state.data.map((todo, index)=> (
-          <Todo data={todo} statuses={this.state.statuses} key={index} fwdTodo={this.fwdTodo} />
+          <Todo data={todo} statuses={this.state.statuses} key={index} fwdTodo={this.fwdTodo} updateTodo={this.updateTodo} />
         ))}
       </div>
     );

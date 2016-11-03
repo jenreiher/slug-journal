@@ -33,6 +33,13 @@ const routes      = require('./routes.js')
 // for parsing application/x-www-form-urlencoded and json data
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
+app.all('*', function(req, res, next) {
+     var origin = req.get('origin'); 
+     res.header('Access-Control-Allow-Origin', origin);
+     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+     res.header('Access-Control-Allow-Headers', 'Content-Type');
+     next();
+});
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
