@@ -20,6 +20,7 @@ module.exports = (knex) => {
     knex
       .select()
       .table("todos")
+      .orderBy('id', 'asc')
       .then((results) => {
         res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
         res.json(results);
@@ -42,10 +43,28 @@ module.exports = (knex) => {
       .into('todos')
       .then(function(results) {
         res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
-        console.log(results[0])
         res.json(results[0]);
       })
   });
+
+  // update todos 
+  router.get('/todos/:id', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
+  });
+
+  router.post('/todos/:id', function(req, res) {
+    try{req.body = JSON.parse(Object.keys(req.body)[0])}catch(err){req.body = req.body}
+    res.setHeader('Access-Control-Allow-Origin', '*'); // remove this for production
+
+    knex('todos')
+    .where('id', '=', req.params.id)
+    .update({
+      status_id: req.body.status,
+    }).then(function(results) {
+      res.json(results);
+    });
+
+  })
 
   return router;
 }
