@@ -3,15 +3,17 @@ require('dotenv').config();
 module.exports = {
 
   development: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
       host     : process.env.DB_HOST,
       user     : process.env.DB_USER,
       password : process.env.DB_PASS,
       database : process.env.DB_NAME,
-      port     : process.env.DB_PORT,
-      ssl      : process.env.DB_SSL
+      // port     : process.env.DB_PORT,
+      // ssl      : process.env.DB_SSL
     },
+    searchPath: 'knex,public',
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: './db/migrations',
       tableName: 'migrations'

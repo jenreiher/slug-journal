@@ -12,12 +12,6 @@ class Status extends React.Component {
     this.setStatus = this.setStatus.bind(this);
   }
 
-  status() {
-    return(
-      [ '.', 'x', '>', '?' ]
-    )
-  }
-
   toggleClass() {
     if (this.state.toggleClass === '') {
       this.setState({toggleClass: 'hidden'});
@@ -27,7 +21,7 @@ class Status extends React.Component {
   }
 
   getStatus(index) {
-    let status = this.status()[index]
+    let status = this.props.statuses[index]
     return status;
   }
 
@@ -37,10 +31,11 @@ class Status extends React.Component {
   }
 
   displayStatuses() {
+
     return(
       <div className="statuses">
-        {this.status().map((item, index)=> (
-          <DisplayStatus key={index} data={item} index={index} onClick={this.setStatus} />
+        {this.props.statuses.map((item, index)=> (
+          <DisplayStatus key={index} data={item} index={index} setStatus={this.setStatus} />
         ))}
       </div>
     );
@@ -48,11 +43,16 @@ class Status extends React.Component {
 
   render() {
     const index = this.props.status;
-    const todoStatus = this.getStatus(index);
+    const todoStatus = `fa ${this.getStatus(index)} fa-lg`;
 
     return(
-      <div>
-        <div className="status" onClick={this.toggleClass}>{todoStatus}</div>
+      <div className="status">
+        <button
+          onClick={this.toggleClass}
+          className="btn"
+        >
+          <i className={todoStatus} />
+        </button>
         <div className={this.state.toggleClass}>
           {this.displayStatuses()}
         </div>
@@ -64,7 +64,8 @@ class Status extends React.Component {
 
 Status.propTypes = {
   status: React.PropTypes.number.isRequired,
-  setStatus: React.PropTypes.func.isRequired
+  setStatus: React.PropTypes.func.isRequired,
+  statuses: React.PropTypes.array.isRequired
 }
 
 export default Status;

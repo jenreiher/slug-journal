@@ -8,20 +8,21 @@ class DisplayStatus extends React.Component {
   }
 
   setParentStatus() {
-    this.props.onClick(this.props.index);
+    this.props.setStatus(this.props.index);
   }
 
   render() {
+    let className = `fa ${this.props.data} fa-lg`
     return(
-      <div onClick={this.setParentStatus} className="status">
-        {this.props.data}
-      </div>
+      <button onClick={this.setParentStatus} className="btn">
+        <i className={className} />
+      </button>
     );
   }
 }
 
 DisplayStatus.propTypes = {
-  onClick: React.PropTypes.func,
+  setStatus: React.PropTypes.func,
   data: React.PropTypes.string.isRequired,
   index: React.PropTypes.number.isRequired
 }
